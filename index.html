@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vrish Tests</title>
+<style>
+*{box-sizing:border-box}
+:root{--blue:#3478f6;--ink:#19243b;--muted:#728098}
+body{
+ margin:0;min-height:100vh;color:var(--ink);
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ background:radial-gradient(ellipse at 10% 5%,#d6e8ff,transparent 45%),
+ radial-gradient(ellipse at 90% 90%,#e6dcff,transparent 45%),#f6f8fc;
+}
+header{display:flex;align-items:center;gap:12px;padding:24px 6%}
+.logo{width:46px;height:46px;display:grid;place-items:center;border-radius:16px;
+ color:white;font-size:24px;font-weight:800;background:linear-gradient(135deg,#76b6ff,#285de5);
+ box-shadow:0 8px 25px #3478f640}
+.brand{font-size:22px;font-weight:800;letter-spacing:-.6px}
+.tagline{font-size:12px;color:var(--muted);margin-top:3px}
+main{width:min(600px,92%);margin:24px auto 55px}
+.glass{
+ background:rgba(255,255,255,.64);border:1px solid rgba(255,255,255,.92);
+ border-radius:28px;padding:clamp(22px,5vw,36px);
+ box-shadow:0 18px 55px #34508018,inset 0 1px 0 #fff;
+ backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)
+}
+.hidden{display:none!important}
+.eyebrow{color:var(--blue);font-size:11px;font-weight:800;letter-spacing:1.7px}
+h1{font-size:clamp(32px,8vw,44px);letter-spacing:-1.8px;line-height:1.1;margin:12px 0}
+h2{letter-spacing:-.6px}
+p{line-height:1.6}
+.muted{color:var(--muted)}
+.field{margin-top:23px}
+label{display:block;font-size:11px;font-weight:800;letter-spacing:1.1px;margin-bottom:9px}
+select{
+ width:100%;padding:16px;border:1px solid #dce5f2;border-radius:16px;
+ background:#ffffffb8;color:var(--ink);font-size:15px
+}
+button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible,select:focus-visible{outline:3px solid #80b4ff;outline-offset:3px}
+.primary{
+ border:1px solid #77a9ff;border-radius:17px;padding:16px 20px;
+ color:white;font-weight:750;background:linear-gradient(135deg,#65aaff,#2864e8);
+ box-shadow:0 8px 24px #3478f630,inset 0 1px 0 #ffffff80
+}
+.primary:active{transform:scale(.985)}
+.full{width:100%;margin-top:24px}
+.back{border:0;background:none;color:var(--blue);font-weight:700;padding:0 0 22px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:24px 0}
+.stat{padding:15px 5px;border:1px solid white;border-radius:17px;background:#ffffffa8;text-align:center}
+.stat strong{display:block;font-size:20px}
+.stat span{font-size:11px;color:var(--muted)}
+.rules{padding-left:22px;line-height:2;color:#52617a}
+.notice{padding:14px;background:#edf5ff;border-radius:15px;font-size:13px;line-height:1.6;color:#365b91}
+.progress{height:6px;background:#dfe8f6;border-radius:9px;overflow:hidden;margin:15px 0 26px}
+.progress div{height:100%;background:linear-gradient(90deg,#85baff,#3478f6)}
+.question{font-size:21px;line-height:1.45;font-weight:750}
+.option{display:flex;align-items:center;gap:12px;width:100%;text-align:left;
+ margin-top:11px;padding:14px;border:1px solid #dce5f2;border-radius:16px;
+ background:#ffffffa8;color:var(--ink)}
+.option.selected{border-color:#4288f5;background:#eaf3ff}
+.letter{width:30px;height:30px;display:grid;place-items:center;flex-shrink:0;
+ border-radius:10px;background:#edf2fa;font-weight:750}
+.selected .letter{background:#3478f6;color:white}
+.result{font-size:52px;font-weight:850;letter-spacing:-2px}
+.review{padding:15px 0;border-bottom:1px solid #e1e8f2;line-height:1.6}
+footer{text-align:center;padding:0 16px 30px;color:var(--muted);font-size:12px}
+@media(max-width:380px){header{padding:20px 5%}.stats{gap:5px}.stat strong{font-size:17px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">V</div>
+ <div><div class="brand">Vrish Tests</div><div class="tagline">Practise · Learn · Improve</div></div>
+</header>
+<main>
+<section id="home" class="glass">
+ <div class="eyebrow">YOUR LEARNING SPACE</div>
+ <h1>Small steps.<br>Stronger results.</h1>
+ <p class="muted">Choose your chapter. Test your knowledge.</p>
+ <div class="field"><label for="cls">SELECT CLASS</label>
+  <select id="cls"><option value="">Choose your class</option>
+  <option>Class 6</option><option>Class 7</option><option>Class 8</option>
+  <option>Class 9</option><option>Class 10</option></select>
+ </div>
+ <div class="field"><label for="sub">SELECT SUBJECT</label>
+  <select id="sub" disabled><option value="">Choose your subject</option></select>
+ </div>
+ <div class="field"><label for="chap">SELECT CHAPTER</label>
+  <select id="chap" disabled><option value="">Choose your chapter</option></select>
+ </div>
+ <button class="primary full" id="go">GO →</button>
+ <p class="muted" style="font-size:12px;text-align:center">Learn at your own pace.</p>
+</section>
+
+<section id="instructions" class="glass hidden">
+ <button class="back" id="backHome">← Back to selection</button>
+ <div class="eyebrow">BEFORE YOU BEGIN</div><h1>Test instructions</h1>
+ <p class="muted" id="chosen"></p>
+ <div class="stats">
+  <div class="stat"><strong>5</strong><span>Questions</span></div>
+  <div class="stat"><strong>5</strong><span>Total marks</span></div>
+  <div class="stat"><strong>None</strong><span>Time limit</span></div>
+ </div>
+ <h3>How it works</h3>
+ <ol class="rules"><li>Read each question carefully.</li>
+ <li>Select one answer for every question.</li>
+ <li>Answer all questions before submitting.</li>
+ <li>Each correct answer earns one mark.</li>
+ <li>Review answers and explanations at the end.</li></ol>
+ <div class="notice">This first version uses sample questions. We can add real chapter-specific questions next.</div>
+ <button class="primary full" id="start">START TEST →</button>
+</section>
+
+<section id="quiz" class="glass hidden">
+ <button class="back" id="exit">← Exit test</button>
+ <div class="eyebrow" id="quizTitle">PRACTICE TEST</div>
+ <p class="muted" id="progressText"></p>
+ <div class="progress"><div id="bar"></div></div>
+ <div class="question" id="question"></div>
+ <div id="options"></div>
+ <button class="primary full" id="next">NEXT QUESTION →</button>
+</section>
+
+<section id="results" class="glass hidden">
+ <div class="eyebrow">TEST COMPLETED</div><h1 id="resultTitle">Well done!</h1>
+ <p class="muted" id="resultMessage"></p>
+ <div class="result"><span id="score">0</span><span style="font-size:23px;color:#728098"> / 5</span></div>
+ <p class="muted" id="percent"></p><h2>Answer review</h2>
+ <div id="review"></div>
+ <button class="primary full" id="retry">TRY AGAIN ↻</button>
+ <button class="option" id="chooseAgain" style="justify-content:center">Choose another chapter</button>
+</section>
+</main>
+<footer>Vrish Tests · Your journey, your progress.</footer>
+<script>
+const $=id=>document.getElementById(id);
+const cls=$("cls"),sub=$("sub"),chap=$("chap");
+const subjects=["Science","Mathematics","Social Science","English"];
+const chapters=["Chapter 1","Chapter 2","Chapter 3","Chapter 4","Chapter 5"];
+function fill(select,items,placeholder){
+ select.innerHTML="";
+ const first=document.createElement("option");first.value="";first.textContent=placeholder;select.appendChild(first);
+ items.forEach(item=>{const o=document.createElement("option");o.value=item;o.textContent=item;select.appendChild(o)});
+}
+cls.addEventListener("change",()=>{
+ fill(sub,subjects,"Choose your subject");fill(chap,[],"Choose your chapter");
+ sub.disabled=!cls.value;chap.disabled=true;
+});
+sub.addEventListener("change",()=>{
+ fill(chap,chapters,"Choose your chapter");chap.disabled=!sub.value;
+});
+function screen(id){
+ ["home","instructions","quiz","results"].forEach(s=>$(s).classList.toggle("hidden",s!==id));
+ window.scrollTo(0,0);
+}
+function selection(){return [cls.value,sub.value,chap.value].join(" · ")}
+$("go").addEventListener("click",()=>{
+ if(!cls.value||!sub.value||!chap.value){alert("Please select your class, subject and chapter.");return}
+ $("chosen").textContent=selection();screen("instructions");
+});
+$("backHome").addEventListener("click",()=>screen("home"));
+const bank=[
+ {q:"Which is the basic unit of life?",o:["Atom","Cell","Organ","Tissue"],a:1,w:"The cell is the basic structural and functional unit of life."},
+ {q:"Which process helps green plants make food?",o:["Digestion","Respiration","Photosynthesis","Evaporation"],a:2,w:"Photosynthesis uses light energy to help plants make food."},
+ {q:"What is 12 × 8?",o:["86","92","96","108"],a:2,w:"12 multiplied by 8 equals 96."},
+ {q:"Which planet is known as the Red Planet?",o:["Venus","Mars","Jupiter","Mercury"],a:1,w:"Mars appears red because of iron-rich dust on its surface."},
+ {q:"Which gas do humans need for cellular respiration?",o:["Oxygen","Helium","Hydrogen","Neon"],a:0,w:"Our cells use oxygen during cellular respiration."}
+];
+let qs=[],answers=[],at=0;
+$("start").addEventListener("click",()=>{
+ qs=bank.map(q=>({...q}));answers=Array(5).fill(null);at=0;
+ $("quizTitle").textContent=selection();drawQuestion();screen("quiz");
+});
+function drawQuestion(){
+ const q=qs[at];$("progressText").textContent=`Question ${at+1} of ${qs.length}`;
+ $("bar").style.width=((at+1)/qs.length*100)+"%";$("question").textContent=q.q;
+ $("options").innerHTML="";
+ q.o.forEach((v,i)=>{
+  const b=document.createElement("button");b.className="option"+(answers[at]===i?" selected":"");
+  const letter=document.createElement("span");letter.className="letter";letter.textContent=String.fromCharCode(65+i);
+  const txt=document.createElement("span");txt.textContent=v;b.append(letter,txt);
+  b.addEventListener("click",()=>{answers[at]=i;drawQuestion()});$("options").appendChild(b);
+ });
+ $("next").textContent=at===qs.length-1?"SUBMIT TEST ✓":"NEXT QUESTION →";
+}
+$("next").addEventListener("click",()=>{
+ if(answers[at]===null){alert("Please select an answer first.");return}
+ if(at<qs.length-1){at++;drawQuestion()}else results();
+});
+$("exit").addEventListener("click",()=>{
+ if(confirm("Exit this test? Your answers will be lost."))screen("instructions");
+});
+function results(){
+ const score=qs.reduce((n,q,i)=>n+(answers[i]===q.a?1:0),0);
+ $("score").textContent=score;$("percent").textContent=Math.round(score/qs.length*100)+"%";
+ $("resultTitle").textContent=score===5?"Perfect score!":score>=3?"Well done!":"Keep practising!";
+ $("resultMessage").textContent=`You scored ${score} out of ${qs.length}. Every attempt helps you learn.`;
+ $("review").innerHTML="";
+ qs.forEach((q,i)=>{
+  const box=document.createElement("div");box.className="review";
+  const title=document.createElement("strong");title.textContent=`${i+1}. ${q.q}`;
+  const your=document.createElement("p");your.textContent="Your answer: "+(answers[i]===null?"Not answered":q.o[answers[i]]);
+  your.style.color=answers[i]===q.a?"#16834a":"#c14444";
+  const correct=document.createElement("p");correct.textContent="Correct answer: "+q.o[q.a];
+  const why=document.createElement("p");why.className="muted";why.textContent=q.w;
+  box.append(title,your,correct,why);$("review").appendChild(box);
+ });
+ screen("results");
+}
+$("retry").addEventListener("click",()=>{$("start").click()});
+$("chooseAgain").addEventListener("click",()=>screen("home"));
+</script>
+</body>
+</html>
